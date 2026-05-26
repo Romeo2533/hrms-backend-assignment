@@ -15,9 +15,6 @@ from app.routes.attendance_routes import router as attendance_router
 from app.routes.payroll_routes import router as payroll_router
 from app.utils.exception_handler import global_exception_handler
 
-
-Base.metadata.create_all(bind=engine)
-
 app = FastAPI()
 
 app.include_router(auth_router)
