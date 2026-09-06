@@ -1,10 +1,10 @@
-from sqlalchemy import Column
-from sqlalchemy import Integer
-from sqlalchemy import Date
-from sqlalchemy import DateTime
-from sqlalchemy import Float
-from sqlalchemy import Boolean
-from sqlalchemy import ForeignKey
+from sqlalchemy import Column # type: ignore
+from sqlalchemy import Integer # type: ignore
+from sqlalchemy import Date # type: ignore
+from sqlalchemy import DateTime # type: ignore
+from sqlalchemy import Float # type: ignore
+from sqlalchemy import Boolean # type: ignore
+from sqlalchemy import ForeignKey # type: ignore
 
 from app.database import Base
 

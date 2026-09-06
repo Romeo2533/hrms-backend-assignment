@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field # type: ignore
 
 
 class UserRegister(BaseModel):
@@ -16,7 +16,7 @@ class UserRegister(BaseModel):
 
 class UserLogin(BaseModel):
 
-    email: EmailStr
+    username: EmailStr
 
     password: str = Field(
     min_length=6

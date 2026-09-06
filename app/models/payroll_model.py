@@ -1,8 +1,8 @@
-from sqlalchemy import Column
-from sqlalchemy import Integer
-from sqlalchemy import String
-from sqlalchemy import Float
-from sqlalchemy import ForeignKey
+from sqlalchemy import Column # type: ignore
+from sqlalchemy import Integer # type: ignore
+from sqlalchemy import String # type: ignore
+from sqlalchemy import Float # type: ignore
+from sqlalchemy import ForeignKey # type: ignore
 
 from app.database import Base
 

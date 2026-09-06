@@ -1,5 +1,5 @@
-from jose import jwt
-from jose import JWTError
+from jose import jwt # type: ignore
+from jose import JWTError # type: ignore
 
 from datetime import datetime, timedelta
 

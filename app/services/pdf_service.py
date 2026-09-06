@@ -1,4 +1,5 @@
-from reportlab.pdfgen import canvas
+from reportlab.pdfgen import canvas # type: ignore
+
 
 
 def generate_payslip_pdf(

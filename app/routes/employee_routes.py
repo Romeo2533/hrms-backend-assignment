@@ -1,8 +1,8 @@
-from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import HTTPException
-
-from sqlalchemy.orm import Session
+from fastapi import APIRouter # type: ignore
+from fastapi import Depends # type: ignore
+from fastapi import HTTPException # type: ignore
+import random
+from sqlalchemy.orm import Session # type: ignore
 
 from app.dependencies import get_db
 
@@ -39,7 +39,7 @@ def create_employee(
         )
 
     new_employee = Employee(
-        employee_id=employee.employee_id,
+        # employee_id=employee.employee_id,
         name=employee.name,
         email=employee.email,
         department=employee.department,
@@ -49,46 +49,7 @@ def create_employee(
         salary_type=employee.salary_type
     )
 
-    db.add(new_employee)
-
-    db.commit()
-
-    db.refresh(new_employee)
-
-    return {
-        "message": "Employee created successfully"
-    }
-
-@router.post("/")
-def create_employee(
-    employee: EmployeeCreate,
-    db: Session = Depends(get_db),
-    current_user = Depends(
-        role_required(["admin", "hr"])
-    )
-):
-
-    existing_employee = db.query(Employee).filter(
-        Employee.email == employee.email
-    ).first()
-
-    if existing_employee:
-
-        raise HTTPException(
-            status_code=400,
-            detail="Employee already exists"
-        )
-
-    new_employee = Employee(
-        employee_id=employee.employee_id,
-        name=employee.name,
-        email=employee.email,
-        department=employee.department,
-        designation=employee.designation,
-        joining_date=employee.joining_date,
-        base_salary=employee.base_salary,
-        salary_type=employee.salary_type
-    )
+    new_employee.employee_id = (f"{new_employee.department[:3].upper()}_{random.randint(1000, 9999)}")
 
     db.add(new_employee)
 

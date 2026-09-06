@@ -1,8 +1,8 @@
-from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import HTTPException
-from fastapi.responses import FileResponse
-from sqlalchemy.orm import Session
+from fastapi import APIRouter # type: ignore
+from fastapi import Depends # type: ignore
+from fastapi import HTTPException # type: ignore
+from fastapi.responses import FileResponse # type: ignore
+from sqlalchemy.orm import Session # type: ignore
 
 from app.dependencies import get_db
 

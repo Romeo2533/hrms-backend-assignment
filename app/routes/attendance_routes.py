@@ -1,8 +1,8 @@
-from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import HTTPException
+from fastapi import APIRouter # type: ignore
+from fastapi import Depends # type: ignore
+from fastapi import HTTPException # type: ignore
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session # type: ignore
 
 from datetime import datetime
 from datetime import date

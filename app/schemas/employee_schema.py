@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from pydantic import EmailStr
+from pydantic import BaseModel # type: ignore
+from pydantic import EmailStr # type: ignore
 
 from datetime import date
 
@@ -7,8 +7,6 @@ from typing import Optional
 
 
 class EmployeeCreate(BaseModel):
-
-    employee_id: str
 
     name: str
 

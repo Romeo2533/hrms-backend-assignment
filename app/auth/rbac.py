@@ -1,5 +1,5 @@
-from fastapi import Depends
-from fastapi import HTTPException
+from fastapi import Depends # type: ignore
+from fastapi import HTTPException # type: ignore
 
 from app.auth.oauth2 import get_current_user
 

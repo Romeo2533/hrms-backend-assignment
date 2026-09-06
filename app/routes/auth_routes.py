@@ -1,9 +1,9 @@
-from fastapi import APIRouter
-from fastapi import Depends
-from fastapi import HTTPException
-from app.auth.oauth2 import get_current_user
-from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy.orm import Session
+from fastapi import APIRouter # type: ignore
+from fastapi import Depends # type: ignore
+from fastapi import HTTPException # type: ignore
+from app.auth.oauth2 import get_current_user # type: ignore
+from fastapi.security import OAuth2PasswordRequestForm # type: ignore
+from sqlalchemy.orm import Session # type: ignore
 
 from app.dependencies import get_db
 
@@ -63,12 +63,12 @@ def register_user(
 
 @router.post("/login")
 def login_user(
-    form_data: OAuth2PasswordRequestForm = Depends(),
+    user: UserLogin,
     db: Session = Depends(get_db)
 ):
 
     existing_user = db.query(User).filter(
-        User.email == form_data.username
+        User.email == user.username
     ).first()
 
     if not existing_user:
@@ -79,7 +79,7 @@ def login_user(
         )
 
     valid_password = verify_password(
-        form_data.password,
+        user.password,
         existing_user.password
     )
 
@@ -124,7 +124,8 @@ def get_logged_in_user(
 
 @router.post("/refresh")
 def refresh_access_token(
-    refresh_token: str
+    refresh_token: str,
+    db: Session = Depends(get_db)
 ):
 
     payload = verify_access_token(
@@ -144,10 +145,13 @@ def refresh_access_token(
             status_code=401,
             detail="Invalid token type"
         )
-
+    
+    user = db.query(User).filter(User.id == payload.get("user_id")).first()
     new_access_token = create_access_token(
         {
-            "user_id": payload.get("user_id")
+            "user_id": user.id,
+            "role": user.role,
+            "email": user.email
         }
     )
 
